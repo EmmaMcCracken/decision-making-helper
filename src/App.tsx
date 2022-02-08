@@ -20,10 +20,17 @@ interface StateI {
 
 function reducer(state: StateI, action: any) {
   switch (action.type) {
-    case "update_choice": {
-      return { ...state };
-    }
     case "update_attribute": {
+      console.log(state);
+      return {
+        choices: state.choices,
+        attributes: [
+          ...state.attributes,
+          { name: action.name, weighting: action.weighting },
+        ],
+      };
+    }
+    case "update_choice": {
       return { ...state };
     }
     default: {
@@ -41,7 +48,7 @@ const initialState = {
   attributes: [
     { name: "Taste", weighting: 1 },
     { name: "Value for Money", weighting: 0.7 },
-    { name: "Taste", weighting: 1 },
+    { name: "Healthiness", weighting: 1 },
   ],
 };
 
@@ -60,7 +67,12 @@ function App() {
           <Slider
             defaultValue={50}
             onChange={(e) => {
-              console.log(e.target);
+              const element = e.target as HTMLInputElement;
+              dispatch({
+                type: "update_attribute",
+                name: "Taste",
+                weighting: parseInt(element.value),
+              });
             }}
             min={0}
             max={1}
