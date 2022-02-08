@@ -1,9 +1,53 @@
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
-import { textAlign } from "@mui/system";
+import { useReducer } from "react";
 import "./css/App.css";
 
+interface ChoiceI {
+  name: string;
+  weightings: number[];
+}
+
+interface AttributeI {
+  name: string;
+  weighting: number;
+}
+
+interface StateI {
+  choices: ChoiceI[];
+  attributes: AttributeI[];
+}
+
+function reducer(state: StateI, action: any) {
+  switch (action.type) {
+    case "update_choice": {
+      return { ...state };
+    }
+    case "update_attribute": {
+      return { ...state };
+    }
+    default: {
+      throw Error("Unknown action: " + action.type);
+    }
+  }
+}
+
+const initialState = {
+  choices: [
+    { name: "Lasasgne", weightings: [50, 22, 52] },
+    { name: "Chicken Wings", weightings: [83, 81, 10] },
+    { name: "Salad", weightings: [16, 10, 92] },
+  ],
+  attributes: [
+    { name: "Taste", weighting: 1 },
+    { name: "Value for Money", weighting: 0.7 },
+    { name: "Taste", weighting: 1 },
+  ],
+};
+
 function App() {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
   return (
     <div className="App">
       <header className="App-header">
