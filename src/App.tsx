@@ -4,11 +4,13 @@ import { useReducer } from "react";
 import "./css/App.css";
 
 interface ChoiceI {
+  choiceId: number;
   name: string;
   weightings: number[];
 }
 
 interface AttributeI {
+  attributeId: number;
   name: string;
   weighting: number;
 }
@@ -20,18 +22,31 @@ interface StateI {
 
 function reducer(state: StateI, action: any) {
   switch (action.type) {
-    case "update_attribute": {
+    case "update_attribute_weighting": {
       console.log(state);
+      const newAttributes = state.attributes.map((attribute) =>
+        attribute.attributeId === action.attributeId
+          ? { ...attribute, weighting: action.weighting }
+          : attribute
+      );
       return {
         choices: state.choices,
-        attributes: [
-          ...state.attributes,
-          { name: action.name, weighting: action.weighting },
-        ],
+        attributes: newAttributes,
       };
     }
-    case "update_choice": {
-      return { ...state };
+    case "update_choice_weighting": {
+      const newChoices = state.choices.map((choice) => {
+        if (choice.choiceId === action.choiceId) {
+          const newWeightings = choice.weightings;
+          newWeightings[action.attributeId] = action.weighting;
+          return {
+            ...choice,
+            weightings: newWeightings,
+          };
+        }
+        return choice;
+      });
+      return { choices: newChoices, attributes: state.attributes };
     }
     default: {
       throw Error("Unknown action: " + action.type);
@@ -41,14 +56,14 @@ function reducer(state: StateI, action: any) {
 
 const initialState = {
   choices: [
-    { name: "Lasasgne", weightings: [50, 22, 52] },
-    { name: "Chicken Wings", weightings: [83, 81, 10] },
-    { name: "Salad", weightings: [16, 10, 92] },
+    { choiceId: 0, name: "Lasasgne", weightings: [50, 50, 50] },
+    { choiceId: 1, name: "Chicken Wings", weightings: [50, 50, 50] },
+    { choiceId: 2, name: "Salad", weightings: [50, 50, 50] },
   ],
   attributes: [
-    { name: "Taste", weighting: 1 },
-    { name: "Value for Money", weighting: 0.7 },
-    { name: "Healthiness", weighting: 1 },
+    { attributeId: 0, name: "Taste", weighting: 1 },
+    { attributeId: 1, name: "Value for Money", weighting: 1 },
+    { attributeId: 2, name: "Healthiness", weighting: 1 },
   ],
 };
 
@@ -69,9 +84,10 @@ function App() {
             onChange={(e) => {
               const element = e.target as HTMLInputElement;
               dispatch({
-                type: "update_attribute",
-                name: "Taste",
-                weighting: parseInt(element.value),
+                type: "update_attribute_weighting",
+                choiceId: 0,
+                attributeId: 0,
+                weighting: parseFloat(element.value),
               });
             }}
             min={0}
@@ -84,7 +100,12 @@ function App() {
           <Slider
             defaultValue={50}
             onChange={(e) => {
-              console.log(e.target);
+              const element = e.target as HTMLInputElement;
+              dispatch({
+                type: "update_attribute_weighting",
+                attributeId: 1,
+                weighting: parseFloat(element.value),
+              });
             }}
             min={0}
             max={1}
@@ -96,7 +117,12 @@ function App() {
           <Slider
             defaultValue={50}
             onChange={(e) => {
-              console.log(e.target);
+              const element = e.target as HTMLInputElement;
+              dispatch({
+                type: "update_attribute_weighting",
+                attributeId: 2,
+                weighting: parseFloat(element.value),
+              });
             }}
             min={0}
             max={1}
@@ -110,7 +136,13 @@ function App() {
           <Slider
             defaultValue={50}
             onChange={(e) => {
-              console.log(e.target);
+              const element = e.target as HTMLInputElement;
+              dispatch({
+                type: "update_choice_weighting",
+                choiceId: 0,
+                attributeId: 0,
+                weighting: parseFloat(element.value),
+              });
             }}
           />
         </Box>
@@ -119,7 +151,13 @@ function App() {
           <Slider
             defaultValue={50}
             onChange={(e) => {
-              console.log(e.target);
+              const element = e.target as HTMLInputElement;
+              dispatch({
+                type: "update_choice_weighting",
+                choiceId: 0,
+                attributeId: 1,
+                weighting: parseFloat(element.value),
+              });
             }}
           />
         </Box>
@@ -128,7 +166,13 @@ function App() {
           <Slider
             defaultValue={50}
             onChange={(e) => {
-              console.log(e.target);
+              const element = e.target as HTMLInputElement;
+              dispatch({
+                type: "update_choice_weighting",
+                choiceId: 0,
+                attributeId: 2,
+                weighting: parseFloat(element.value),
+              });
             }}
           />
         </Box>
@@ -138,7 +182,13 @@ function App() {
           <Slider
             defaultValue={50}
             onChange={(e) => {
-              console.log(e.target);
+              const element = e.target as HTMLInputElement;
+              dispatch({
+                type: "update_choice_weighting",
+                choiceId: 1,
+                attributeId: 0,
+                weighting: parseFloat(element.value),
+              });
             }}
           />
         </Box>
@@ -147,7 +197,13 @@ function App() {
           <Slider
             defaultValue={50}
             onChange={(e) => {
-              console.log(e.target);
+              const element = e.target as HTMLInputElement;
+              dispatch({
+                type: "update_choice_weighting",
+                choiceId: 1,
+                attributeId: 1,
+                weighting: parseFloat(element.value),
+              });
             }}
           />
         </Box>
@@ -156,7 +212,13 @@ function App() {
           <Slider
             defaultValue={50}
             onChange={(e) => {
-              console.log(e.target);
+              const element = e.target as HTMLInputElement;
+              dispatch({
+                type: "update_choice_weighting",
+                choiceId: 1,
+                attributeId: 2,
+                weighting: parseFloat(element.value),
+              });
             }}
           />
         </Box>
@@ -166,7 +228,13 @@ function App() {
           <Slider
             defaultValue={50}
             onChange={(e) => {
-              console.log(e.target);
+              const element = e.target as HTMLInputElement;
+              dispatch({
+                type: "update_choice_weighting",
+                choiceId: 2,
+                attributeId: 0,
+                weighting: parseFloat(element.value),
+              });
             }}
           />
         </Box>
@@ -175,7 +243,13 @@ function App() {
           <Slider
             defaultValue={50}
             onChange={(e) => {
-              console.log(e.target);
+              const element = e.target as HTMLInputElement;
+              dispatch({
+                type: "update_choice_weighting",
+                choiceId: 2,
+                attributeId: 1,
+                weighting: parseFloat(element.value),
+              });
             }}
           />
         </Box>
@@ -184,7 +258,13 @@ function App() {
           <Slider
             defaultValue={50}
             onChange={(e) => {
-              console.log(e.target);
+              const element = e.target as HTMLInputElement;
+              dispatch({
+                type: "update_choice_weighting",
+                choiceId: 2,
+                attributeId: 2,
+                weighting: parseFloat(element.value),
+              });
             }}
           />
         </Box>
