@@ -2,6 +2,7 @@ import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import { useReducer } from "react";
 import "./css/App.css";
+import findScores from "./utils/findScores";
 import { StateI } from "./utils/Interfaces";
 
 function reducer(state: StateI, action: any) {
@@ -53,7 +54,7 @@ const initialState = {
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
-
+  const scores = findScores(state);
   return (
     <div className="App">
       <header className="App-header">
@@ -252,6 +253,10 @@ function App() {
             }}
           />
         </Box>
+        <h1>The scores are:</h1>
+        <h3>Lasagne: {scores[0]}</h3>
+        <h3>Chicken Wings: {scores[1]}</h3>
+        <h3>Salad: {scores[2]}</h3>
       </main>
     </div>
   );
