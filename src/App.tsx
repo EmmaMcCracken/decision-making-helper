@@ -2,23 +2,7 @@ import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import { useReducer } from "react";
 import "./css/App.css";
-
-interface ChoiceI {
-  choiceId: number;
-  name: string;
-  weightings: number[];
-}
-
-interface AttributeI {
-  attributeId: number;
-  name: string;
-  weighting: number;
-}
-
-interface StateI {
-  choices: ChoiceI[];
-  attributes: AttributeI[];
-}
+import { StateI } from "./utils/Interfaces";
 
 function reducer(state: StateI, action: any) {
   switch (action.type) {
