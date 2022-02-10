@@ -4,35 +4,62 @@ import { useReducer } from "react";
 import "./css/App.css";
 import { reducer, initialState } from "./utils/reducer";
 import findScores from "./utils/findScores";
+import ReactFlow from "react-flow-renderer";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const scores = findScores(state);
+
+  const elements = [
+    {
+      id: "1",
+      data: {
+        label: (
+          <>
+            <h3>Taste: </h3>
+            <Box className="nodrag" sx={{ width: 100, margin: "0 auto" }}>
+              <Slider
+                defaultValue={50}
+                onChange={(e) => {
+                  const element = e.target as HTMLInputElement;
+                  dispatch({
+                    type: "update_attribute_weighting",
+                    choiceId: 0,
+                    attributeId: 0,
+                    weighting: parseFloat(element.value),
+                  });
+                }}
+                min={0}
+                max={1}
+                step={0.1}
+              />
+            </Box>
+          </>
+        ),
+      },
+      position: { x: 250, y: 20 },
+    },
+    {
+      id: "2",
+      data: { label: "Node 2" },
+      position: { x: 500, y: 20 },
+    },
+    { id: "3", data: { label: "Node 3" }, position: { x: 750, y: 20 } },
+    { id: "e1-2", source: "1", target: "2", animated: true },
+  ];
+
   return (
     <div className="App">
       <header className="App-header">
         <h1>Decision Making Helper</h1>
       </header>
       <main className="container">
+        <div style={{ width: "100%", height: "100vh" }}>
+          <ReactFlow elements={elements} />
+        </div>
+
         <h2>Weightings:</h2>
-        <h3>Taste: </h3>
-        <Box sx={{ width: 200, margin: "0 auto" }}>
-          <Slider
-            defaultValue={50}
-            onChange={(e) => {
-              const element = e.target as HTMLInputElement;
-              dispatch({
-                type: "update_attribute_weighting",
-                choiceId: 0,
-                attributeId: 0,
-                weighting: parseFloat(element.value),
-              });
-            }}
-            min={0}
-            max={1}
-            step={0.1}
-          />
-        </Box>
+
         <h3>Value for Money: </h3>
         <Box sx={{ width: 200, margin: "0 auto" }}>
           <Slider
