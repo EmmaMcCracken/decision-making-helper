@@ -5,6 +5,7 @@ export const initialState = {
     { choiceId: 0, name: "Lasasgne", weightings: [50, 50, 50] },
     { choiceId: 1, name: "Chicken Wings", weightings: [50, 50, 50] },
     { choiceId: 2, name: "Salad", weightings: [50, 50, 50] },
+    { choiceId: 3, name: "Panini", weightings: [50, 50, 50] },
   ],
   attributes: [
     { attributeId: 0, name: "Taste", weighting: 1 },

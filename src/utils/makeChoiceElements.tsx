@@ -37,11 +37,11 @@ export function makeChoiceElement(
                     }}
                   />
                 </Box>
-                <h2>Score: </h2>
-                <p>{score}</p>
               </>
             );
           })}
+          <h2>Score: </h2>
+          <p>{score}</p>
         </>
       ),
     },

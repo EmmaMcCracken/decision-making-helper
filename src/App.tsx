@@ -10,6 +10,7 @@ import indexOfMax from "./utils/indexOfMax";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
+  console.log(state.choices);
   const { choices, attributes } = state;
   const scores = findScores(state);
 
@@ -30,7 +31,7 @@ function App() {
           </>
         ),
       },
-      position: { x: 500, y: 800 },
+      position: { x: 500, y: 400 + 100 * attributes.length },
     },
   ];
 
