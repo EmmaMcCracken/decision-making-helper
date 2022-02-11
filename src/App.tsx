@@ -17,6 +17,7 @@ function App() {
         label: (
           <>
             <h3>Taste: </h3>
+            <p>Weighting: {state.attributes[0].weighting}</p>
             <Box className="nodrag" sx={{ width: 100, margin: "0 auto" }}>
               <Slider
                 defaultValue={50}
@@ -41,11 +42,242 @@ function App() {
     },
     {
       id: "2",
-      data: { label: "Node 2" },
+      data: {
+        label: (
+          <>
+            <h3>Value for Money: </h3>
+            <p>Weighting: {state.attributes[1].weighting}</p>
+            <Box className="nodrag" sx={{ width: 100, margin: "0 auto" }}>
+              <Slider
+                defaultValue={50}
+                onChange={(e) => {
+                  const element = e.target as HTMLInputElement;
+                  dispatch({
+                    type: "update_attribute_weighting",
+                    attributeId: 1,
+                    weighting: parseFloat(element.value),
+                  });
+                }}
+                min={0}
+                max={1}
+                step={0.1}
+              />
+            </Box>
+          </>
+        ),
+      },
       position: { x: 500, y: 20 },
     },
-    { id: "3", data: { label: "Node 3" }, position: { x: 750, y: 20 } },
-    { id: "e1-2", source: "1", target: "2", animated: true },
+    {
+      id: "3",
+      data: {
+        label: (
+          <>
+            <h3>Healthiness: </h3>
+            <p>Weighting: {state.attributes[2].weighting}</p>
+            <Box className="nodrag" sx={{ width: 100, margin: "0 auto" }}>
+              <Slider
+                defaultValue={50}
+                onChange={(e) => {
+                  const element = e.target as HTMLInputElement;
+                  dispatch({
+                    type: "update_attribute_weighting",
+                    attributeId: 2,
+                    weighting: parseFloat(element.value),
+                  });
+                }}
+                min={0}
+                max={1}
+                step={0.1}
+              />
+            </Box>
+          </>
+        ),
+      },
+      position: { x: 750, y: 20 },
+    },
+    {
+      id: "4",
+      data: {
+        label: (
+          <>
+            <h2>Lasagne:</h2>
+            <h3>Taste: {state.choices[0].weightings[0]} </h3>
+            <Box className="nodrag" sx={{ width: 100, margin: "0 auto" }}>
+              <Slider
+                defaultValue={50}
+                onChange={(e) => {
+                  const element = e.target as HTMLInputElement;
+                  dispatch({
+                    type: "update_choice_weighting",
+                    choiceId: 0,
+                    attributeId: 0,
+                    weighting: parseFloat(element.value),
+                  });
+                }}
+              />
+            </Box>
+            <h3>Value for Money: {state.choices[0].weightings[1]} </h3>
+            <Box className="nodrag" sx={{ width: 100, margin: "0 auto" }}>
+              <Slider
+                defaultValue={50}
+                onChange={(e) => {
+                  const element = e.target as HTMLInputElement;
+                  dispatch({
+                    type: "update_choice_weighting",
+                    choiceId: 0,
+                    attributeId: 1,
+                    weighting: parseFloat(element.value),
+                  });
+                }}
+              />
+            </Box>
+            <h3>Healthiness: {state.choices[0].weightings[2]} </h3>
+            <Box className="nodrag" sx={{ width: 100, margin: "0 auto" }}>
+              <Slider
+                defaultValue={50}
+                onChange={(e) => {
+                  const element = e.target as HTMLInputElement;
+                  dispatch({
+                    type: "update_choice_weighting",
+                    choiceId: 0,
+                    attributeId: 2,
+                    weighting: parseFloat(element.value),
+                  });
+                }}
+              />
+            </Box>
+          </>
+        ),
+      },
+      position: { x: 250, y: 200 },
+    },
+    {
+      id: "5",
+      data: {
+        label: (
+          <>
+            <h2>Chicken wings:</h2>
+            <h3>Taste: {state.choices[1].weightings[0]}</h3>
+            <Box className="nodrag" sx={{ width: 100, margin: "0 auto" }}>
+              <Slider
+                defaultValue={50}
+                onChange={(e) => {
+                  const element = e.target as HTMLInputElement;
+                  dispatch({
+                    type: "update_choice_weighting",
+                    choiceId: 1,
+                    attributeId: 0,
+                    weighting: parseFloat(element.value),
+                  });
+                }}
+              />
+            </Box>
+            <h3>Value for Money: {state.choices[1].weightings[1]} </h3>
+            <Box className="nodrag" sx={{ width: 100, margin: "0 auto" }}>
+              <Slider
+                defaultValue={50}
+                onChange={(e) => {
+                  const element = e.target as HTMLInputElement;
+                  dispatch({
+                    type: "update_choice_weighting",
+                    choiceId: 1,
+                    attributeId: 1,
+                    weighting: parseFloat(element.value),
+                  });
+                }}
+              />
+            </Box>
+            <h3>Healthiness: {state.choices[1].weightings[2]} </h3>
+            <Box className="nodrag" sx={{ width: 100, margin: "0 auto" }}>
+              <Slider
+                defaultValue={50}
+                onChange={(e) => {
+                  const element = e.target as HTMLInputElement;
+                  dispatch({
+                    type: "update_choice_weighting",
+                    choiceId: 1,
+                    attributeId: 2,
+                    weighting: parseFloat(element.value),
+                  });
+                }}
+              />
+            </Box>
+          </>
+        ),
+      },
+      position: { x: 500, y: 200 },
+    },
+    {
+      id: "7",
+      data: {
+        label: (
+          <>
+            <h2>Salad:</h2>
+            <h3>Taste: {state.choices[2].weightings[0]} </h3>
+            <Box className="nodrag" sx={{ width: 100, margin: "0 auto" }}>
+              <Slider
+                defaultValue={50}
+                onChange={(e) => {
+                  const element = e.target as HTMLInputElement;
+                  dispatch({
+                    type: "update_choice_weighting",
+                    choiceId: 2,
+                    attributeId: 0,
+                    weighting: parseFloat(element.value),
+                  });
+                }}
+              />
+            </Box>
+            <h3>Value for Money: {state.choices[2].weightings[1]} </h3>
+            <Box className="nodrag" sx={{ width: 100, margin: "0 auto" }}>
+              <Slider
+                defaultValue={50}
+                onChange={(e) => {
+                  const element = e.target as HTMLInputElement;
+                  dispatch({
+                    type: "update_choice_weighting",
+                    choiceId: 2,
+                    attributeId: 1,
+                    weighting: parseFloat(element.value),
+                  });
+                }}
+              />
+            </Box>
+            <h3>Healthiness: {state.choices[2].weightings[2]} </h3>
+            <Box className="nodrag" sx={{ width: 100, margin: "0 auto" }}>
+              <Slider
+                defaultValue={50}
+                onChange={(e) => {
+                  const element = e.target as HTMLInputElement;
+                  dispatch({
+                    type: "update_choice_weighting",
+                    choiceId: 2,
+                    attributeId: 2,
+                    weighting: parseFloat(element.value),
+                  });
+                }}
+              />
+            </Box>
+          </>
+        ),
+      },
+      position: { x: 750, y: 200 },
+    },
+    {
+      id: "6",
+      data: {
+        label: (
+          <>
+            <h1>Scores:</h1>
+            <h3>Lasagne: {scores[0]}</h3>
+            <h3>Chicken Wings: {scores[1]}</h3>
+            <h3>Salad: {scores[2]}</h3>
+          </>
+        ),
+      },
+      position: { x: 500, y: 600 },
+    },
   ];
 
   return (
@@ -54,189 +286,12 @@ function App() {
         <h1>Decision Making Helper</h1>
       </header>
       <main className="container">
-        <div style={{ width: "100%", height: "100vh" }}>
-          <ReactFlow elements={elements} />
+        <div style={{ width: "90%", height: "100vh", margin: "auto" }}>
+          <ReactFlow
+            elements={elements}
+            style={{ border: "10px solid grey" }}
+          />
         </div>
-
-        <h2>Weightings:</h2>
-
-        <h3>Value for Money: </h3>
-        <Box sx={{ width: 200, margin: "0 auto" }}>
-          <Slider
-            defaultValue={50}
-            onChange={(e) => {
-              const element = e.target as HTMLInputElement;
-              dispatch({
-                type: "update_attribute_weighting",
-                attributeId: 1,
-                weighting: parseFloat(element.value),
-              });
-            }}
-            min={0}
-            max={1}
-            step={0.1}
-          />
-        </Box>
-        <h3>Healthiness: </h3>
-        <Box sx={{ width: 200, margin: "0 auto" }}>
-          <Slider
-            defaultValue={50}
-            onChange={(e) => {
-              const element = e.target as HTMLInputElement;
-              dispatch({
-                type: "update_attribute_weighting",
-                attributeId: 2,
-                weighting: parseFloat(element.value),
-              });
-            }}
-            min={0}
-            max={1}
-            step={0.1}
-          />
-        </Box>
-        <h2>Choices:</h2>
-        <h2>Lasagne:</h2>
-        <h3>Taste: </h3>
-        <Box sx={{ width: 200, margin: "0 auto" }}>
-          <Slider
-            defaultValue={50}
-            onChange={(e) => {
-              const element = e.target as HTMLInputElement;
-              dispatch({
-                type: "update_choice_weighting",
-                choiceId: 0,
-                attributeId: 0,
-                weighting: parseFloat(element.value),
-              });
-            }}
-          />
-        </Box>
-        <h3>Value for Money: </h3>
-        <Box sx={{ width: 200, margin: "0 auto" }}>
-          <Slider
-            defaultValue={50}
-            onChange={(e) => {
-              const element = e.target as HTMLInputElement;
-              dispatch({
-                type: "update_choice_weighting",
-                choiceId: 0,
-                attributeId: 1,
-                weighting: parseFloat(element.value),
-              });
-            }}
-          />
-        </Box>
-        <h3>Healthiness: </h3>
-        <Box sx={{ width: 200, margin: "0 auto" }}>
-          <Slider
-            defaultValue={50}
-            onChange={(e) => {
-              const element = e.target as HTMLInputElement;
-              dispatch({
-                type: "update_choice_weighting",
-                choiceId: 0,
-                attributeId: 2,
-                weighting: parseFloat(element.value),
-              });
-            }}
-          />
-        </Box>
-        <h2>Chicken wings:</h2>
-        <h3>Taste: </h3>
-        <Box sx={{ width: 200, margin: "0 auto" }}>
-          <Slider
-            defaultValue={50}
-            onChange={(e) => {
-              const element = e.target as HTMLInputElement;
-              dispatch({
-                type: "update_choice_weighting",
-                choiceId: 1,
-                attributeId: 0,
-                weighting: parseFloat(element.value),
-              });
-            }}
-          />
-        </Box>
-        <h3>Value for Money: </h3>
-        <Box sx={{ width: 200, margin: "0 auto" }}>
-          <Slider
-            defaultValue={50}
-            onChange={(e) => {
-              const element = e.target as HTMLInputElement;
-              dispatch({
-                type: "update_choice_weighting",
-                choiceId: 1,
-                attributeId: 1,
-                weighting: parseFloat(element.value),
-              });
-            }}
-          />
-        </Box>
-        <h3>Healthiness: </h3>
-        <Box sx={{ width: 200, margin: "0 auto" }}>
-          <Slider
-            defaultValue={50}
-            onChange={(e) => {
-              const element = e.target as HTMLInputElement;
-              dispatch({
-                type: "update_choice_weighting",
-                choiceId: 1,
-                attributeId: 2,
-                weighting: parseFloat(element.value),
-              });
-            }}
-          />
-        </Box>
-        <h2>Salad:</h2>
-        <h3>Taste: </h3>
-        <Box sx={{ width: 200, margin: "0 auto" }}>
-          <Slider
-            defaultValue={50}
-            onChange={(e) => {
-              const element = e.target as HTMLInputElement;
-              dispatch({
-                type: "update_choice_weighting",
-                choiceId: 2,
-                attributeId: 0,
-                weighting: parseFloat(element.value),
-              });
-            }}
-          />
-        </Box>
-        <h3>Value for Money: </h3>
-        <Box sx={{ width: 200, margin: "0 auto" }}>
-          <Slider
-            defaultValue={50}
-            onChange={(e) => {
-              const element = e.target as HTMLInputElement;
-              dispatch({
-                type: "update_choice_weighting",
-                choiceId: 2,
-                attributeId: 1,
-                weighting: parseFloat(element.value),
-              });
-            }}
-          />
-        </Box>
-        <h3>Healthiness: </h3>
-        <Box sx={{ width: 200, margin: "0 auto" }}>
-          <Slider
-            defaultValue={50}
-            onChange={(e) => {
-              const element = e.target as HTMLInputElement;
-              dispatch({
-                type: "update_choice_weighting",
-                choiceId: 2,
-                attributeId: 2,
-                weighting: parseFloat(element.value),
-              });
-            }}
-          />
-        </Box>
-        <h1>The scores are:</h1>
-        <h3>Lasagne: {scores[0]}</h3>
-        <h3>Chicken Wings: {scores[1]}</h3>
-        <h3>Salad: {scores[2]}</h3>
       </main>
     </div>
   );
