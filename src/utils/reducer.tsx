@@ -17,7 +17,6 @@ export const initialState = {
 export function reducer(state: StateI, action: any) {
   switch (action.type) {
     case "update_attribute_weighting": {
-      console.log(state);
       const newAttributes = state.attributes.map((attribute) =>
         attribute.attributeId === action.attributeId
           ? { ...attribute, weighting: action.weighting }
@@ -41,6 +40,17 @@ export function reducer(state: StateI, action: any) {
         return choice;
       });
       return { choices: newChoices, attributes: state.attributes };
+    }
+    case "update_choice_name": {
+      const newChoices = state.choices.map((choice) =>
+        choice.choiceId === action.choiceId
+          ? { ...choice, name: action.name }
+          : choice
+      );
+      return {
+        choices: newChoices,
+        attributes: state.attributes,
+      };
     }
     default: {
       throw Error("Unknown action: " + action.type);

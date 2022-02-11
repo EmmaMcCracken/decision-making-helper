@@ -7,6 +7,7 @@ import makeAttributeElements from "./utils/makeAttributeElements";
 import makeChoiceElements from "./utils/makeChoiceElements";
 import { ElementI } from "./utils/Interfaces";
 import indexOfMax from "./utils/indexOfMax";
+import UpdateNames from "./css/components/UpdateNames";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -50,6 +51,7 @@ function App() {
             elements={elements}
             style={{ border: "10px solid grey" }}
           />
+          <UpdateNames state={state} dispatch={dispatch} />
         </div>
       </main>
     </div>
