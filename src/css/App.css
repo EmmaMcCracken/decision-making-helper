@@ -27,3 +27,18 @@
 .App-link {
   color: #61dafb;
 }
+
+.container {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+}
+
+.item {
+  flex-grow: 5;
+  border: 1px solid grey;
+}
+
+.small-item {
+  flex-grow: 2;
+}

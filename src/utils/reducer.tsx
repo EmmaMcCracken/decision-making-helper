@@ -52,6 +52,17 @@ export function reducer(state: StateI, action: any) {
         attributes: state.attributes,
       };
     }
+    case "update_attribute_name": {
+      const newAttributes = state.attributes.map((attribute) =>
+        attribute.attributeId === action.attributeId
+          ? { ...attribute, name: action.name }
+          : attribute
+      );
+      return {
+        choices: state.choices,
+        attributes: newAttributes,
+      };
+    }
     default: {
       throw Error("Unknown action: " + action.type);
     }

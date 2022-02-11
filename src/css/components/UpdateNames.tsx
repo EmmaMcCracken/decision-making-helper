@@ -6,21 +6,44 @@ interface UpdateNamesProps {
 }
 
 export default function UpdateNames(props: UpdateNamesProps): JSX.Element {
-  const { choices } = props.state;
+  const { choices, attributes } = props.state;
   const { dispatch } = props;
   return (
-    <>
-      <p>Choice 1:</p>
-      <input
-        value={choices[0].name}
-        onChange={(e) => {
-          dispatch({
-            type: "update_choice_name",
-            choiceId: 0,
-            name: e.target.value,
-          });
-        }}
-      ></input>
-    </>
+    <div>
+      <div>
+        {choices.map((choice) => (
+          <>
+            <p>Choice {choice.choiceId + 1}:</p>
+            <input
+              value={choice.name}
+              onChange={(e) => {
+                dispatch({
+                  type: "update_choice_name",
+                  choiceId: choice.choiceId,
+                  name: e.target.value,
+                });
+              }}
+            ></input>
+          </>
+        ))}
+      </div>
+      <div>
+        {attributes.map((attribute) => (
+          <>
+            <p>Attribute {attribute.attributeId + 1}:</p>
+            <input
+              value={attribute.name}
+              onChange={(e) => {
+                dispatch({
+                  type: "update_attribute_name",
+                  attributeId: attribute.attributeId,
+                  name: e.target.value,
+                });
+              }}
+            ></input>
+          </>
+        ))}
+      </div>
+    </div>
   );
 }

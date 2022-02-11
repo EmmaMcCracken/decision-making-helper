@@ -46,11 +46,10 @@ function App() {
         <h1>Decision Making Helper</h1>
       </header>
       <main className="container">
-        <div style={{ width: "90%", height: "100vh", margin: "auto" }}>
-          <ReactFlow
-            elements={elements}
-            style={{ border: "10px solid grey" }}
-          />
+        <div className="item">
+          <ReactFlow elements={elements} />
+        </div>
+        <div className="small-item">
           <UpdateNames state={state} dispatch={dispatch} />
         </div>
       </main>
