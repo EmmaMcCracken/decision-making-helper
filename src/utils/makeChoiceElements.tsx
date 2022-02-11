@@ -5,7 +5,8 @@ import { AttributeI, ChoiceI, ElementI, StateI } from "./Interfaces";
 export function makeChoiceElement(
   { choiceId, name, weightings }: ChoiceI,
   dispatch: React.Dispatch<any>,
-  attributes: AttributeI[]
+  attributes: AttributeI[],
+  score: number
 ): ElementI {
   const numOfAttributes = attributes.length;
 
@@ -36,6 +37,8 @@ export function makeChoiceElement(
                     }}
                   />
                 </Box>
+                <h2>Score: </h2>
+                <p>{score}</p>
               </>
             );
           })}
@@ -49,9 +52,10 @@ export function makeChoiceElement(
 
 export default function makeChoiceElements(
   { choices, attributes }: StateI,
-  dispatch: React.Dispatch<any>
+  dispatch: React.Dispatch<any>,
+  scores: number[]
 ): ElementI[] {
-  return choices.map((choice) =>
-    makeChoiceElement(choice, dispatch, attributes)
+  return choices.map((choice, id) =>
+    makeChoiceElement(choice, dispatch, attributes, scores[id])
   );
 }

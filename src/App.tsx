@@ -6,6 +6,7 @@ import ReactFlow from "react-flow-renderer";
 import makeAttributeElements from "./utils/makeAttributeElements";
 import makeChoiceElements from "./utils/makeChoiceElements";
 import { ElementI } from "./utils/Interfaces";
+import indexOfMax from "./utils/indexOfMax";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -14,30 +15,28 @@ function App() {
 
   const attributeElements = makeAttributeElements(attributes, dispatch);
 
-  const choiceElements = makeChoiceElements(state, dispatch);
+  const choiceElements = makeChoiceElements(state, dispatch, scores);
 
-  const scoreElement = [
+  const winnerElement = [
     {
       id: (choices.length + attributes.length).toString(),
       data: {
         label: (
           <>
-            <h1>Scores:</h1>
-            {choices.map((choice, id) => (
-              <h3>
-                {choice.name}: {scores[id]}
-              </h3>
-            ))}
+            <h1>Winner:</h1>
+            {indexOfMax(scores) === -1
+              ? "Draw"
+              : choices[indexOfMax(scores)].name}
           </>
         ),
       },
-      position: { x: 500, y: 600 },
+      position: { x: 500, y: 800 },
     },
   ];
 
   const elements: ElementI[] = attributeElements
     .concat(choiceElements)
-    .concat(scoreElement);
+    .concat(winnerElement);
 
   return (
     <div className="App">

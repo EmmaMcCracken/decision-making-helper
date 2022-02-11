@@ -20,7 +20,7 @@ export function makeAttributeElement(
     data: {
       label: (
         <>
-          <h3>{name}: </h3>
+          <h2>{name}: </h2>
           <p>Weighting: {weighting}</p>
           <Box className="nodrag" sx={{ width: 100, margin: "0 auto" }}>
             <Slider
