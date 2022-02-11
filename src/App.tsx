@@ -5,97 +5,15 @@ import "./css/App.css";
 import { reducer, initialState } from "./utils/reducer";
 import findScores from "./utils/findScores";
 import ReactFlow from "react-flow-renderer";
+import makeAttributeElements from "./utils/makeAttributeElements";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const scores = findScores(state);
 
-  const elements = [
-    {
-      id: "1",
-      data: {
-        label: (
-          <>
-            <h3>Taste: </h3>
-            <p>Weighting: {state.attributes[0].weighting}</p>
-            <Box className="nodrag" sx={{ width: 100, margin: "0 auto" }}>
-              <Slider
-                defaultValue={50}
-                onChange={(e) => {
-                  const element = e.target as HTMLInputElement;
-                  dispatch({
-                    type: "update_attribute_weighting",
-                    choiceId: 0,
-                    attributeId: 0,
-                    weighting: parseFloat(element.value),
-                  });
-                }}
-                min={0}
-                max={1}
-                step={0.1}
-              />
-            </Box>
-          </>
-        ),
-      },
-      position: { x: 250, y: 20 },
-    },
-    {
-      id: "2",
-      data: {
-        label: (
-          <>
-            <h3>Value for Money: </h3>
-            <p>Weighting: {state.attributes[1].weighting}</p>
-            <Box className="nodrag" sx={{ width: 100, margin: "0 auto" }}>
-              <Slider
-                defaultValue={50}
-                onChange={(e) => {
-                  const element = e.target as HTMLInputElement;
-                  dispatch({
-                    type: "update_attribute_weighting",
-                    attributeId: 1,
-                    weighting: parseFloat(element.value),
-                  });
-                }}
-                min={0}
-                max={1}
-                step={0.1}
-              />
-            </Box>
-          </>
-        ),
-      },
-      position: { x: 500, y: 20 },
-    },
-    {
-      id: "3",
-      data: {
-        label: (
-          <>
-            <h3>Healthiness: </h3>
-            <p>Weighting: {state.attributes[2].weighting}</p>
-            <Box className="nodrag" sx={{ width: 100, margin: "0 auto" }}>
-              <Slider
-                defaultValue={50}
-                onChange={(e) => {
-                  const element = e.target as HTMLInputElement;
-                  dispatch({
-                    type: "update_attribute_weighting",
-                    attributeId: 2,
-                    weighting: parseFloat(element.value),
-                  });
-                }}
-                min={0}
-                max={1}
-                step={0.1}
-              />
-            </Box>
-          </>
-        ),
-      },
-      position: { x: 750, y: 20 },
-    },
+  const attributeElements = makeAttributeElements(state.attributes, dispatch);
+
+  const choiceElements = [
     {
       id: "4",
       data: {
@@ -279,6 +197,8 @@ function App() {
       position: { x: 500, y: 600 },
     },
   ];
+
+  const elements = attributeElements.concat(choiceElements);
 
   return (
     <div className="App">
