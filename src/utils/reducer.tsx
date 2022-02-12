@@ -1,4 +1,4 @@
-import { StateI } from "./Interfaces";
+import { ChoiceI, StateI } from "./Interfaces";
 
 export const initialState = {
   choices: [
@@ -64,16 +64,13 @@ export function reducer(state: StateI, action: any) {
       };
     }
     case "delete_choice": {
-      console.log(state.choices);
       const newChoices = state.choices.filter(
         (choice) => choice.choiceId !== action.choiceId
       );
-      console.log(newChoices);
       const choicesWithCorrectIds = newChoices.map((choice, index) => {
         choice.choiceId = index;
         return choice;
       });
-      console.log(choicesWithCorrectIds);
       return {
         choices: choicesWithCorrectIds,
         attributes: state.attributes,
@@ -83,9 +80,33 @@ export function reducer(state: StateI, action: any) {
       const newAttributes = state.attributes.filter(
         (attribute) => attribute.attributeId !== action.attributeId
       );
+      const attributesWithCorrectIds = newAttributes.map((attribute, index) => {
+        attribute.attributeId = index;
+        return attribute;
+      });
+
+      const updatedChoices = state.choices;
+      updatedChoices.forEach((choice) => {
+        choice.weightings.splice(action.attributeId, 1);
+      });
+
       return {
         choices: state.choices,
-        attributes: newAttributes,
+        attributes: attributesWithCorrectIds,
+      };
+    }
+    case "add_choice": {
+      console.log("hello");
+      const choice = {
+        choiceId: state.choices.length,
+        name: "New choice",
+        weightings: Array(state.attributes.length).fill(50),
+      };
+      const choicesArr = state.choices;
+      choicesArr.push(choice);
+      return {
+        choices: choicesArr,
+        attributes: state.attributes,
       };
     }
     default: {

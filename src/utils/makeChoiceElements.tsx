@@ -18,14 +18,6 @@ export function makeChoiceElement(
           {" "}
           <h2>{name}:</h2>
           {attributes.map((attribute, attributeId) => {
-            console.log(
-              "for choice:",
-              name,
-              "and attributeId",
-              attributeId,
-              "weightings[attributeId] is",
-              weightings[attributeId]
-            );
             return (
               <>
                 <h3>

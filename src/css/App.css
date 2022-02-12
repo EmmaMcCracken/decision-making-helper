@@ -35,10 +35,15 @@
 }
 
 .item {
-  flex-grow: 5;
+  flex-grow: 500;
   border: 1px solid grey;
 }
 
 .small-item {
-  flex-grow: 2;
+  flex-grow: 100;
+  margin: 0px;
+}
+
+.smaller-item {
+  margin: 50px 100px 50px 0px;
 }

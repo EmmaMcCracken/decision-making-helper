@@ -8,6 +8,7 @@ import makeChoiceElements from "./utils/makeChoiceElements";
 import { ElementI } from "./utils/Interfaces";
 import indexOfMax from "./utils/indexOfMax";
 import UpdateNames from "./css/components/UpdateNames";
+import AddNewChoiceOrAttr from "./css/components/AddNewChoiceOrAttr";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -52,6 +53,9 @@ function App() {
         </div>
         <div key="update names container" className="small-item">
           <UpdateNames state={state} dispatch={dispatch} />
+        </div>
+        <div key="add new nodes" className="smaller-item">
+          <AddNewChoiceOrAttr dispatch={dispatch} />
         </div>
       </main>
     </div>

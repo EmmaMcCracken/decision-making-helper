@@ -48,6 +48,16 @@ export default function UpdateNames(props: UpdateNamesProps): JSX.Element {
                 });
               }}
             ></input>
+            <button
+              onClick={() =>
+                dispatch({
+                  type: "delete_attribute",
+                  attributeId: attribute.attributeId,
+                })
+              }
+            >
+              X
+            </button>
           </div>
         ))}
       </div>
