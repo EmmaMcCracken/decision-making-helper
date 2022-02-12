@@ -9,10 +9,10 @@ export default function UpdateNames(props: UpdateNamesProps): JSX.Element {
   const { choices, attributes } = props.state;
   const { dispatch } = props;
   return (
-    <div>
-      <div>
+    <div key="update names">
+      <div key="update choices">
         {choices.map((choice) => (
-          <>
+          <div key={choice.choiceId}>
             <p>Choice {choice.choiceId + 1}:</p>
             <input
               value={choice.name}
@@ -24,12 +24,19 @@ export default function UpdateNames(props: UpdateNamesProps): JSX.Element {
                 });
               }}
             ></input>
-          </>
+            <button
+              onClick={() =>
+                dispatch({ type: "delete_choice", choiceId: choice.choiceId })
+              }
+            >
+              X
+            </button>
+          </div>
         ))}
       </div>
-      <div>
+      <div key="update attributes">
         {attributes.map((attribute) => (
-          <>
+          <div key={attribute.attributeId * 100}>
             <p>Attribute {attribute.attributeId + 1}:</p>
             <input
               value={attribute.name}
@@ -41,7 +48,7 @@ export default function UpdateNames(props: UpdateNamesProps): JSX.Element {
                 });
               }}
             ></input>
-          </>
+          </div>
         ))}
       </div>
     </div>

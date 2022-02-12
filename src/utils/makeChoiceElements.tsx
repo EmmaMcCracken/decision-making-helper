@@ -18,6 +18,14 @@ export function makeChoiceElement(
           {" "}
           <h2>{name}:</h2>
           {attributes.map((attribute, attributeId) => {
+            console.log(
+              "for choice:",
+              name,
+              "and attributeId",
+              attributeId,
+              "weightings[attributeId] is",
+              weightings[attributeId]
+            );
             return (
               <>
                 <h3>
@@ -25,7 +33,7 @@ export function makeChoiceElement(
                 </h3>
                 <Box className="nodrag" sx={{ width: 100, margin: "0 auto" }}>
                   <Slider
-                    defaultValue={50}
+                    value={weightings[attributeId]}
                     onChange={(e) => {
                       const element = e.target as HTMLInputElement;
                       dispatch({

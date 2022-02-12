@@ -63,6 +63,31 @@ export function reducer(state: StateI, action: any) {
         attributes: newAttributes,
       };
     }
+    case "delete_choice": {
+      console.log(state.choices);
+      const newChoices = state.choices.filter(
+        (choice) => choice.choiceId !== action.choiceId
+      );
+      console.log(newChoices);
+      const choicesWithCorrectIds = newChoices.map((choice, index) => {
+        choice.choiceId = index;
+        return choice;
+      });
+      console.log(choicesWithCorrectIds);
+      return {
+        choices: choicesWithCorrectIds,
+        attributes: state.attributes,
+      };
+    }
+    case "delete_attribute": {
+      const newAttributes = state.attributes.filter(
+        (attribute) => attribute.attributeId !== action.attributeId
+      );
+      return {
+        choices: state.choices,
+        attributes: newAttributes,
+      };
+    }
     default: {
       throw Error("Unknown action: " + action.type);
     }

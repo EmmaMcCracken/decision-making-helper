@@ -11,8 +11,9 @@ import UpdateNames from "./css/components/UpdateNames";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
-  console.log(state.choices);
   const { choices, attributes } = state;
+  console.log({ choices });
+  console.log({ attributes });
   const scores = findScores(state);
 
   const attributeElements = makeAttributeElements(attributes, dispatch);
@@ -46,10 +47,10 @@ function App() {
         <h1>Decision Making Helper</h1>
       </header>
       <main className="container">
-        <div className="item">
+        <div key="reactflow" className="item">
           <ReactFlow elements={elements} />
         </div>
-        <div className="small-item">
+        <div key="update names container" className="small-item">
           <UpdateNames state={state} dispatch={dispatch} />
         </div>
       </main>
