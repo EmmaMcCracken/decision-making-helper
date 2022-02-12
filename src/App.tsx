@@ -13,8 +13,6 @@ import AddNewChoiceOrAttr from "./css/components/AddNewChoiceOrAttr";
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { choices, attributes } = state;
-  console.log({ choices });
-  console.log({ attributes });
   const scores = findScores(state);
 
   const attributeElements = makeAttributeElements(attributes, dispatch);
