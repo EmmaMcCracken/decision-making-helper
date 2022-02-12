@@ -1,4 +1,4 @@
-import { ChoiceI, StateI } from "./Interfaces";
+import { StateI } from "./Interfaces";
 
 export const initialState = {
   choices: [
