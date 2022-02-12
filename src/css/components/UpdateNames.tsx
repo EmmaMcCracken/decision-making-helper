@@ -12,7 +12,7 @@ export default function UpdateNames(props: UpdateNamesProps): JSX.Element {
     <div key="update names">
       <div key="update choices">
         {choices.map((choice) => (
-          <div key={choice.choiceId}>
+          <div key={choice.choiceId * 1000}>
             <p>Choice {choice.choiceId + 1}:</p>
             <input
               value={choice.name}

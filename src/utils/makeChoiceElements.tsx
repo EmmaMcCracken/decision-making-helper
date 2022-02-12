@@ -14,7 +14,7 @@ export function makeChoiceElement(
     id: (choiceId + numOfAttributes).toString(),
     data: {
       label: (
-        <>
+        <div key={`choice ${choiceId}`}>
           {" "}
           <h2>{name}:</h2>
           {attributes.map((attribute, attributeId) => {
@@ -42,7 +42,7 @@ export function makeChoiceElement(
           })}
           <h2>Score: </h2>
           <p>{score}</p>
-        </>
+        </div>
       ),
     },
     position: { x: 250 * (0.5 + choiceId), y: 200 },

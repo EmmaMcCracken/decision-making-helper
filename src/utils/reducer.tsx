@@ -14,21 +14,21 @@ export const initialState = {
   ],
 };
 
-export function reducer(state: StateI, action: any) {
+export function reducer({ choices, attributes }: StateI, action: any) {
   switch (action.type) {
     case "update_attribute_weighting": {
-      const newAttributes = state.attributes.map((attribute) =>
+      const newAttributes = attributes.map((attribute) =>
         attribute.attributeId === action.attributeId
           ? { ...attribute, weighting: action.weighting }
           : attribute
       );
       return {
-        choices: state.choices,
+        choices: choices,
         attributes: newAttributes,
       };
     }
     case "update_choice_weighting": {
-      const newChoices = state.choices.map((choice) => {
+      const newChoices = choices.map((choice) => {
         if (choice.choiceId === action.choiceId) {
           const newWeightings = choice.weightings;
           newWeightings[action.attributeId] = action.weighting;
@@ -39,32 +39,32 @@ export function reducer(state: StateI, action: any) {
         }
         return choice;
       });
-      return { choices: newChoices, attributes: state.attributes };
+      return { choices: newChoices, attributes: attributes };
     }
     case "update_choice_name": {
-      const newChoices = state.choices.map((choice) =>
+      const newChoices = choices.map((choice) =>
         choice.choiceId === action.choiceId
           ? { ...choice, name: action.name }
           : choice
       );
       return {
         choices: newChoices,
-        attributes: state.attributes,
+        attributes: attributes,
       };
     }
     case "update_attribute_name": {
-      const newAttributes = state.attributes.map((attribute) =>
+      const newAttributes = attributes.map((attribute) =>
         attribute.attributeId === action.attributeId
           ? { ...attribute, name: action.name }
           : attribute
       );
       return {
-        choices: state.choices,
+        choices: choices,
         attributes: newAttributes,
       };
     }
     case "delete_choice": {
-      const newChoices = state.choices.filter(
+      const newChoices = choices.filter(
         (choice) => choice.choiceId !== action.choiceId
       );
       const choicesWithCorrectIds = newChoices.map((choice, index) => {
@@ -73,11 +73,11 @@ export function reducer(state: StateI, action: any) {
       });
       return {
         choices: choicesWithCorrectIds,
-        attributes: state.attributes,
+        attributes: attributes,
       };
     }
     case "delete_attribute": {
-      const newAttributes = state.attributes.filter(
+      const newAttributes = attributes.filter(
         (attribute) => attribute.attributeId !== action.attributeId
       );
       const attributesWithCorrectIds = newAttributes.map((attribute, index) => {
@@ -85,38 +85,38 @@ export function reducer(state: StateI, action: any) {
         return attribute;
       });
 
-      const updatedChoices = state.choices;
+      const updatedChoices = choices;
       updatedChoices.forEach((choice) => {
         choice.weightings.splice(action.attributeId, 1);
       });
 
       return {
-        choices: state.choices,
+        choices: choices,
         attributes: attributesWithCorrectIds,
       };
     }
     case "add_choice": {
       const choice = {
-        choiceId: state.choices.length,
+        choiceId: choices.length,
         name: "New choice",
-        weightings: Array(state.attributes.length).fill(50),
+        weightings: Array(attributes.length).fill(50),
       };
-      const choicesArr = state.choices;
+      const choicesArr = choices;
       choicesArr.push(choice);
       return {
         choices: choicesArr,
-        attributes: state.attributes,
+        attributes: attributes,
       };
     }
     case "add_attribute": {
       const attribute = {
-        attributeId: state.attributes.length,
+        attributeId: attributes.length,
         name: "New attribute",
         weighting: 0.5,
       };
-      const attributesArr = state.attributes;
+      const attributesArr = attributes;
       attributesArr.push(attribute);
-      const newChoices = state.choices.map((choice) => {
+      const newChoices = choices.map((choice) => {
         choice.weightings.push(50);
         return choice;
       });

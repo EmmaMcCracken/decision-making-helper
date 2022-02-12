@@ -19,7 +19,7 @@ export function makeAttributeElement(
     id: attributeId.toString(),
     data: {
       label: (
-        <>
+        <div key={`attribute ${attributeId}`}>
           <h2>{name}: </h2>
           <p>Weighting: {weighting}</p>
           <Box className="nodrag" sx={{ width: 100, margin: "0 auto" }}>
@@ -38,7 +38,7 @@ export function makeAttributeElement(
               step={0.1}
             />
           </Box>
-        </>
+        </div>
       ),
     },
     position: { x: 250 * (0.5 + attributeId), y: 20 },
