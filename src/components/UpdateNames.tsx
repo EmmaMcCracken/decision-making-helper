@@ -1,4 +1,4 @@
-import { StateI } from "../../utils/Interfaces";
+import { StateI } from "../utils/Interfaces";
 
 interface UpdateNamesProps {
   state: StateI;
@@ -11,8 +11,8 @@ export default function UpdateNames(props: UpdateNamesProps): JSX.Element {
   return (
     <div key="update names">
       <div key="update choices">
-        {choices.map((choice) => (
-          <div key={choice.choiceId * 1000}>
+        {choices.map((choice, key) => (
+          <div key={key}>
             <p>Choice {choice.choiceId + 1}:</p>
             <input
               value={choice.name}
@@ -35,8 +35,8 @@ export default function UpdateNames(props: UpdateNamesProps): JSX.Element {
         ))}
       </div>
       <div key="update attributes">
-        {attributes.map((attribute) => (
-          <div key={attribute.attributeId * 100}>
+        {attributes.map((attribute, key) => (
+          <div key={key}>
             <p>Attribute {attribute.attributeId + 1}:</p>
             <input
               value={attribute.name}

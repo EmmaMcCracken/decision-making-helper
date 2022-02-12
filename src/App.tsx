@@ -7,8 +7,8 @@ import makeAttributeElements from "./utils/makeAttributeElements";
 import makeChoiceElements from "./utils/makeChoiceElements";
 import { ElementI } from "./utils/Interfaces";
 import indexOfMax from "./utils/indexOfMax";
-import UpdateNames from "./css/components/UpdateNames";
-import AddNewChoiceOrAttr from "./css/components/AddNewChoiceOrAttr";
+import UpdateNames from "./components/UpdateNames";
+import AddNewChoiceOrAttr from "./components/AddNewChoiceOrAttr";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);

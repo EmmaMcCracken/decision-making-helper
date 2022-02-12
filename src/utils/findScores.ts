@@ -1,8 +1,7 @@
 import { StateI } from "./Interfaces";
 
-// I'm not sure if it would be better to write a function findScore, which finds the score for a single choice, or findScores, which finds the score for all of the choices. In an attempt to reduce computation, I will implement findScores.
-
 export default function findScores(state: StateI): number[] {
+  // creates an array of attribute weightings between 0 and 1
   const weightingsArr = state.attributes.map(
     (attribute) => attribute.weighting
   );
@@ -11,6 +10,7 @@ export default function findScores(state: StateI): number[] {
 
   for (let choice of state.choices) {
     const choiceWeightings = choice.weightings;
+    // score is found to 1 decimal place
     const score =
       Math.round(dotProduct(weightingsArr, choiceWeightings) * 10) / 10;
     scoresArr.push(score);
