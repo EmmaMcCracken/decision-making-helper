@@ -8,9 +8,9 @@ export const initialState = {
     { choiceId: 3, name: "Panini", weightings: [50, 50, 50] },
   ],
   attributes: [
-    { attributeId: 0, name: "Taste", weighting: 1 },
-    { attributeId: 1, name: "Value for Money", weighting: 1 },
-    { attributeId: 2, name: "Healthiness", weighting: 1 },
+    { attributeId: 0, name: "Taste", weighting: 0.5 },
+    { attributeId: 1, name: "Value for Money", weighting: 0.5 },
+    { attributeId: 2, name: "Healthiness", weighting: 0.5 },
   ],
 };
 

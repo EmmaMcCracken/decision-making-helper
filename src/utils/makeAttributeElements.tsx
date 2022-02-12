@@ -24,7 +24,7 @@ export function makeAttributeElement(
           <p>Weighting: {weighting}</p>
           <Box className="nodrag" sx={{ width: 100, margin: "0 auto" }}>
             <Slider
-              defaultValue={50}
+              value={weighting}
               onChange={(e) => {
                 const element = e.target as HTMLInputElement;
                 dispatch({
