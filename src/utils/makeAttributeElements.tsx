@@ -41,7 +41,7 @@ export function makeAttributeElement(
         </>
       ),
     },
-    position: { x: 250 * (1 + attributeId), y: 20 },
+    position: { x: 250 * (0.5 + attributeId), y: 20 },
   };
 
   return element;

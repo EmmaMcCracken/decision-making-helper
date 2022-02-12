@@ -45,7 +45,7 @@ export function makeChoiceElement(
         </>
       ),
     },
-    position: { x: 250 * (1 + choiceId), y: 200 },
+    position: { x: 250 * (0.5 + choiceId), y: 200 },
   };
   return element;
 }
