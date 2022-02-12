@@ -18,6 +18,16 @@ export default function AddNewChoiceOrAttr(
         }
       >
         Add new choice
+      </button>{" "}
+      <br />
+      <button
+        onClick={() =>
+          dispatch({
+            type: "add_attribute",
+          })
+        }
+      >
+        Add new attribute
       </button>
     </>
   );

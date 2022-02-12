@@ -96,7 +96,6 @@ export function reducer(state: StateI, action: any) {
       };
     }
     case "add_choice": {
-      console.log("hello");
       const choice = {
         choiceId: state.choices.length,
         name: "New choice",
@@ -107,6 +106,23 @@ export function reducer(state: StateI, action: any) {
       return {
         choices: choicesArr,
         attributes: state.attributes,
+      };
+    }
+    case "add_attribute": {
+      const attribute = {
+        attributeId: state.attributes.length,
+        name: "New attribute",
+        weighting: 0.5,
+      };
+      const attributesArr = state.attributes;
+      attributesArr.push(attribute);
+      const newChoices = state.choices.map((choice) => {
+        choice.weightings.push(50);
+        return choice;
+      });
+      return {
+        choices: newChoices,
+        attributes: attributesArr,
       };
     }
     default: {
