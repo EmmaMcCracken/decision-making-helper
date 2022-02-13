@@ -9,6 +9,7 @@ import { ElementI } from "./utils/Interfaces";
 import indexOfMax from "./utils/indexOfMax";
 import UpdateNames from "./components/UpdateNames";
 import AddNewChoiceOrAttr from "./components/AddNewChoiceOrAttr";
+import React from "react";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -24,12 +25,12 @@ function App() {
       id: (choices.length + attributes.length).toString(),
       data: {
         label: (
-          <>
+          <div>
             <h1>Winner:</h1>
             {indexOfMax(scores) === -1
               ? "Draw"
               : choices[indexOfMax(scores)].name}
-          </>
+          </div>
         ),
       },
       position: { x: 500, y: 400 + 100 * attributes.length },

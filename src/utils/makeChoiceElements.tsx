@@ -11,15 +11,15 @@ export function makeChoiceElement(
   const numOfAttributes = attributes.length;
 
   const element: ElementI = {
-    id: (choiceId + numOfAttributes).toString(),
+    id: `choice ${choiceKey}`,
     data: {
       label: (
-        <div key={`choice ${choiceKey}`}>
+        <div key={`choice ${name} ${choiceKey}`}>
           {" "}
           <h2>{name}:</h2>
           {attributes.map((attribute, attributeId) => {
             return (
-              <>
+              <div key={`${choiceKey} ${attribute.attributeKey}`}>
                 <h3>
                   {attribute.name}: {weightings[attributeId]}
                 </h3>
@@ -37,7 +37,7 @@ export function makeChoiceElement(
                     }}
                   />
                 </Box>
-              </>
+              </div>
             );
           })}
           <h2>Score: </h2>
