@@ -30,9 +30,6 @@ export function reducer(
   { choices, attributes, nextChoiceKey, nextAttributeKey }: StateI,
   action: any
 ) {
-  console.log({ choices });
-  console.log({ attributes });
-
   switch (action.type) {
     case "update_attribute_weighting": {
       const newAttributes = attributes.map((attribute) =>
