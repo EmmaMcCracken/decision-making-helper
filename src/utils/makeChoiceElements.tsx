@@ -8,8 +8,6 @@ export function makeChoiceElement(
   attributes: AttributeI[],
   score: number
 ): ElementI {
-  const numOfAttributes = attributes.length;
-
   const element: ElementI = {
     id: `choice ${choiceKey}`,
     data: {
