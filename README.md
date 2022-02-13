@@ -4,8 +4,8 @@ This is a prototype for an app to help people make decisions.
 
 ### Current working functionality:
 
-- The user can input and their choices along with attributes and weightings
-- The app calculates a score for each choice
+- The user can input, edit and remove choices, attributes and weightings
+- The app calculates a score for each choice and determines if there is a winner or a draw
 
 ### Suggestions for improvements to be made:
 
