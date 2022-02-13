@@ -2,19 +2,37 @@ import { StateI } from "./Interfaces";
 
 export const initialState = {
   choices: [
-    { choiceId: 0, name: "Lasasgne", weightings: [50, 50, 50] },
-    { choiceId: 1, name: "Chicken Wings", weightings: [50, 50, 50] },
-    { choiceId: 2, name: "Salad", weightings: [50, 50, 50] },
-    { choiceId: 3, name: "Panini", weightings: [50, 50, 50] },
+    { choiceId: 0, choiceKey: 0, name: "Lasasgne", weightings: [50, 50, 50] },
+    {
+      choiceId: 1,
+      choiceKey: 1,
+      name: "Chicken Wings",
+      weightings: [50, 50, 50],
+    },
+    { choiceId: 2, choiceKey: 2, name: "Salad", weightings: [50, 50, 50] },
+    { choiceId: 3, choiceKey: 3, name: "Panini", weightings: [50, 50, 50] },
   ],
   attributes: [
-    { attributeId: 0, name: "Taste", weighting: 0.5 },
-    { attributeId: 1, name: "Value for Money", weighting: 0.5 },
-    { attributeId: 2, name: "Healthiness", weighting: 0.5 },
+    { attributeId: 0, attributeKey: 0, name: "Taste", weighting: 0.5 },
+    {
+      attributeId: 1,
+      attributeKey: 1,
+      name: "Value for Money",
+      weighting: 0.5,
+    },
+    { attributeId: 2, attributeKey: 2, name: "Healthiness", weighting: 0.5 },
   ],
+  nextChoiceKey: 4,
+  nextAttributeKey: 3,
 };
 
-export function reducer({ choices, attributes }: StateI, action: any) {
+export function reducer(
+  { choices, attributes, nextChoiceKey, nextAttributeKey }: StateI,
+  action: any
+) {
+  console.log({ choices });
+  console.log({ attributes });
+
   switch (action.type) {
     case "update_attribute_weighting": {
       const newAttributes = attributes.map((attribute) =>
@@ -25,6 +43,8 @@ export function reducer({ choices, attributes }: StateI, action: any) {
       return {
         choices: choices,
         attributes: newAttributes,
+        nextChoiceKey: nextChoiceKey,
+        nextAttributeKey: nextAttributeKey,
       };
     }
     case "update_choice_weighting": {
@@ -39,7 +59,12 @@ export function reducer({ choices, attributes }: StateI, action: any) {
         }
         return choice;
       });
-      return { choices: newChoices, attributes: attributes };
+      return {
+        choices: newChoices,
+        attributes: attributes,
+        nextChoiceKey: nextChoiceKey,
+        nextAttributeKey: nextAttributeKey,
+      };
     }
     case "update_choice_name": {
       const newChoices = choices.map((choice) =>
@@ -50,6 +75,8 @@ export function reducer({ choices, attributes }: StateI, action: any) {
       return {
         choices: newChoices,
         attributes: attributes,
+        nextChoiceKey: nextChoiceKey,
+        nextAttributeKey: nextAttributeKey,
       };
     }
     case "update_attribute_name": {
@@ -61,6 +88,8 @@ export function reducer({ choices, attributes }: StateI, action: any) {
       return {
         choices: choices,
         attributes: newAttributes,
+        nextChoiceKey: nextChoiceKey,
+        nextAttributeKey: nextAttributeKey,
       };
     }
     case "delete_choice": {
@@ -74,6 +103,8 @@ export function reducer({ choices, attributes }: StateI, action: any) {
       return {
         choices: choicesWithCorrectIds,
         attributes: attributes,
+        nextChoiceKey: nextChoiceKey,
+        nextAttributeKey: nextAttributeKey,
       };
     }
     case "delete_attribute": {
@@ -93,24 +124,31 @@ export function reducer({ choices, attributes }: StateI, action: any) {
       return {
         choices: choices,
         attributes: attributesWithCorrectIds,
+        nextChoiceKey: nextChoiceKey,
+        nextAttributeKey: nextAttributeKey,
       };
     }
     case "add_choice": {
       const choice = {
         choiceId: choices.length,
+        choiceKey: nextChoiceKey,
         name: "New choice",
         weightings: Array(attributes.length).fill(50),
       };
       const choicesArr = choices;
       choicesArr.push(choice);
+      let newNextChoiceKey = nextChoiceKey + 1;
       return {
         choices: choicesArr,
         attributes: attributes,
+        nextChoiceKey: newNextChoiceKey,
+        nextAttributeKey: nextAttributeKey,
       };
     }
     case "add_attribute": {
       const attribute = {
         attributeId: attributes.length,
+        attributeKey: nextAttributeKey,
         name: "New attribute",
         weighting: 0.5,
       };
@@ -120,9 +158,12 @@ export function reducer({ choices, attributes }: StateI, action: any) {
         choice.weightings.push(50);
         return choice;
       });
+      const newNextAttributeKey = nextAttributeKey + 1;
       return {
         choices: newChoices,
         attributes: attributesArr,
+        nextChoiceKey: nextChoiceKey,
+        nextAttributeKey: newNextAttributeKey,
       };
     }
     default: {

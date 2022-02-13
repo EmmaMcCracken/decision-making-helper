@@ -12,14 +12,14 @@ interface attributeElementI {
 }
 
 export function makeAttributeElement(
-  { attributeId, name, weighting }: AttributeI,
+  { attributeId, attributeKey, name, weighting }: AttributeI,
   dispatch: React.Dispatch<any>
 ): attributeElementI {
   let element: attributeElementI = {
     id: attributeId.toString(),
     data: {
       label: (
-        <div key={`attribute ${attributeId}`}>
+        <div key={`attribute ${attributeKey}`}>
           <h2>{name}: </h2>
           <p>Weighting: {weighting}</p>
           <Box className="nodrag" sx={{ width: 100, margin: "0 auto" }}>

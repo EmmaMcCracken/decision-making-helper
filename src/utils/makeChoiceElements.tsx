@@ -3,7 +3,7 @@ import React from "react";
 import { AttributeI, ChoiceI, ElementI, StateI } from "./Interfaces";
 
 export function makeChoiceElement(
-  { choiceId, name, weightings }: ChoiceI,
+  { choiceId, choiceKey, name, weightings }: ChoiceI,
   dispatch: React.Dispatch<any>,
   attributes: AttributeI[],
   score: number
@@ -14,7 +14,7 @@ export function makeChoiceElement(
     id: (choiceId + numOfAttributes).toString(),
     data: {
       label: (
-        <div key={`choice ${choiceId}`}>
+        <div key={`choice ${choiceKey}`}>
           {" "}
           <h2>{name}:</h2>
           {attributes.map((attribute, attributeId) => {
