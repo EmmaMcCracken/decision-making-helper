@@ -2,12 +2,12 @@
 
 This is a prototype for an app to help people make decisions.
 
-# Current working functionality:
+### Current working functionality:
 
 - The user can input and their choices along with attributes and weightings
 - The app calculates a score for each choice
 
-# Suggestions for improvements to be made:
+### Suggestions for improvements to be made:
 
 - Currently the app breaks when either all choices or all attributes are removed. If there is only one choice remaining, it would be better if the user was not given the option to remove a choice. This can be done with conditional rendering within the map over choices that checks the number of choices. Likewise for attributes.
 - There are 3 unit tests, there should be more to check more edge cases
@@ -17,7 +17,7 @@ This is a prototype for an app to help people make decisions.
 - At the moment each choice and attribute has a 'choiceId' and 'attributeId'. These names are inappropriate as their values are not ids, but rather just their index in the current state's array of choices or attributes. As such, you may prefer to rename these variables to be choiceIndex and attributeIndex.
 - Styling could be improved and edges can be added betweene nodes to help the user understand that a relationship exiss between them. If edges are not added, then the node style should be changed to not have the dot at the top and the bottom of the rectangle where an edge would come from.
 
-# Journal/reflections:
+### Journal/reflections:
 
 Initially I researched the new technologies that were suggested to be used: useReducer and React Flow. For React Flow  (https://reactflow.dev/), I read through the examples given in the docs to understand the notation of the objects passed into the React Flow component. For useReducer, I read through the React Beta Docs and completed the exercises on it. This allowed me to swiftly implement the hook in the decision making helper without coming across many errors.
 
@@ -58,7 +58,7 @@ Secondly,the centreing of the nodes within the React Flow component has not been
 
 - currently the winner node is positioned underneath the second choice. This means that it is not always in the centre of the choices. Similarly the attribute nodes are not centred relative to the choices nodes, depending on the number of attributes and choices. I would recommend basing the central positions of the attribute and winner nodes based off the number of choices. E.g. :
 
-# What I have learned from this project:
+### What I have learned from this project:
 
 - I can learn and successfully apply a new react state hook and library over the course of a day
 - keys for siblings in React components need to be unique and consistent, so that the virtual DOM understands the situation
