@@ -9,7 +9,6 @@ import { ElementI } from "./utils/Interfaces";
 import indexOfMax from "./utils/indexOfMax";
 import UpdateNames from "./components/UpdateNames";
 import AddNewChoiceOrAttr from "./components/AddNewChoiceOrAttr";
-import React from "react";
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
