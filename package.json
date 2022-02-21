@@ -32,7 +32,7 @@
     "type-check": "tsc --noEmit",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -58,11 +58,5 @@
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-typescript": "^7.16.7",
     "babel-jest": "^27.5.1"
-  },
-  "jest": {
-    "moduleNameMapper": {
-      "^.+.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub"
-    },
-    "testEnvironment": "jsdom"
   }
 }
