@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import React from "react";
 
 interface AddNewChoiceOrAttrProps {
@@ -10,7 +11,9 @@ export default function AddNewChoiceOrAttr(
   const { dispatch } = props;
   return (
     <>
-      <button
+      <Button
+        variant="outlined"
+        sx={{ margin: "3px", width: "100%" }}
         onClick={() =>
           dispatch({
             type: "add_choice",
@@ -18,9 +21,11 @@ export default function AddNewChoiceOrAttr(
         }
       >
         Add new choice
-      </button>{" "}
+      </Button>{" "}
       <br />
-      <button
+      <Button
+        variant="outlined"
+        sx={{ margin: "3px", width: "100%" }}
         onClick={() =>
           dispatch({
             type: "add_attribute",
@@ -28,7 +33,7 @@ export default function AddNewChoiceOrAttr(
         }
       >
         Add new attribute
-      </button>
+      </Button>
     </>
   );
 }

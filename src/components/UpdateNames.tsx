@@ -1,3 +1,5 @@
+import { Button, IconButton } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { StateI } from "../utils/Interfaces";
 
 interface UpdateNamesProps {
@@ -24,13 +26,13 @@ export default function UpdateNames(props: UpdateNamesProps): JSX.Element {
                 });
               }}
             ></input>
-            <button
+            <IconButton
               onClick={() =>
                 dispatch({ type: "delete_choice", choiceId: choice.choiceId })
               }
             >
-              X
-            </button>
+              <DeleteIcon />
+            </IconButton>
           </div>
         ))}
       </div>
@@ -48,7 +50,7 @@ export default function UpdateNames(props: UpdateNamesProps): JSX.Element {
                 });
               }}
             ></input>
-            <button
+            <IconButton
               onClick={() =>
                 dispatch({
                   type: "delete_attribute",
@@ -56,8 +58,8 @@ export default function UpdateNames(props: UpdateNamesProps): JSX.Element {
                 })
               }
             >
-              X
-            </button>
+              <DeleteIcon />
+            </IconButton>
           </div>
         ))}
       </div>

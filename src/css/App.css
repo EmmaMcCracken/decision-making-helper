@@ -36,7 +36,6 @@
 
 .item {
   flex-grow: 500;
-  border: 1px solid grey;
   height: 1000px;
   width: 1000px;
 }
